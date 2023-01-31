@@ -1,3 +1,4 @@
+package main;
 
 import java.awt.BorderLayout;
 import java.text.DecimalFormat;
@@ -168,19 +169,9 @@ public class Menu extends javax.swing.JFrame {
         BalancePanel balance = new BalancePanel();
         DecimalFormat formatter = new DecimalFormat("#,###.00");
 
-        if (DepositPanel.instance != null && DepositPanel.instance.finalBalance > 0) {
-            currentBalance += DepositPanel.instance.finalBalance;
-            balance.balanceLBL.setText(formatter.format(currentBalance));
-            ShowPanel(balance);
-        } else if (WithdrawPanel.instance != null && WithdrawPanel.instance.finalBalance < 0) {
-            currentBalance += WithdrawPanel.instance.finalBalance;
-            balance.balanceLBL.setText(formatter.format(currentBalance));
-            ShowPanel(balance);
-        } else {
-            balance.balanceLBL.setText(formatter.format(currentBalance));
-            ShowPanel(balance);
-        }
-        
+        balance.balanceLBL.setText(formatter.format(currentBalance));
+        ShowPanel(balance);
+
     }//GEN-LAST:event_BalanceBTNActionPerformed
 
     private void DepositBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DepositBTNActionPerformed

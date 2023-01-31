@@ -1,12 +1,26 @@
+package main;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
 
     public String password = "1234";
 
+    public static Login instance;
+//newPasswordUpdated
+
     public Login() {
         initComponents();
+        instance = this;
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("password.txt"));
+            password = br.readLine();
+            br.close();
+        } catch (Exception ex) {
+            // ignore
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -120,6 +134,7 @@ public class Login extends javax.swing.JFrame {
         String passwordInput = passwordTXT.getText();
 
         if (!userInput.isEmpty() && !passwordInput.isEmpty()) {
+
             if (passwordInput.equals(password)) {
                 menu.setVisible(true);
                 this.dispose();
@@ -133,10 +148,10 @@ public class Login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_loginBTNActionPerformed
 
-     public void setPassword(String password) {
+    public void setPassword(String password) {
         this.password = password;
     }
-     
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -159,6 +174,9 @@ public class Login extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

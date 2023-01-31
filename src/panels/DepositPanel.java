@@ -1,8 +1,8 @@
 package panels;
 
 import java.awt.BorderLayout;
-import java.awt.Menu;
 import javax.swing.JOptionPane;
+import main.Menu;
 
 public class DepositPanel extends javax.swing.JPanel {
 
@@ -148,27 +148,27 @@ public class DepositPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Balance10BTN1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Balance10BTN1ActionPerformed
-        finalBalance += 10000;
+        Menu.instance.currentBalance += 10000;
         JOptionPane.showMessageDialog(null, "$10.000 han sido depositados en la cuenta, ya puedes consultar tu nuevo saldo.");
     }//GEN-LAST:event_Balance10BTN1ActionPerformed
 
     private void Balance20BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Balance20BTNActionPerformed
-        finalBalance += 20000;
+        Menu.instance.currentBalance += 20000;
         JOptionPane.showMessageDialog(null, "$20.000 han sido depositados en la cuenta, ya puedes consultar tu nuevo saldo.");
     }//GEN-LAST:event_Balance20BTNActionPerformed
 
     private void Balance50BTN2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Balance50BTN2ActionPerformed
-        finalBalance += 50000;
+        Menu.instance.currentBalance += 50000;
         JOptionPane.showMessageDialog(null, "$50.000 han sido depositados en la cuenta, ya puedes consultar tu nuevo saldo.");
     }//GEN-LAST:event_Balance50BTN2ActionPerformed
 
     private void Balance100BTN3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Balance100BTN3ActionPerformed
-        finalBalance += 100000;
+        Menu.instance.currentBalance += 100000;
         JOptionPane.showMessageDialog(null, "$100.000 han sido depositados en la cuenta, ya puedes consultar tu nuevo saldo.");
     }//GEN-LAST:event_Balance100BTN3ActionPerformed
 
     private void Balance200BTN4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Balance200BTN4ActionPerformed
-        finalBalance += 200000;
+        Menu.instance.currentBalance += 200000;
         JOptionPane.showMessageDialog(null, "$200.000 han sido depositados en la cuenta, ya puedes consultar tu nuevo saldo.");
     }//GEN-LAST:event_Balance200BTN4ActionPerformed
 
@@ -176,7 +176,7 @@ public class DepositPanel extends javax.swing.JPanel {
         String input = JOptionPane.showInputDialog(instance, "Enter deposit amount:");
         try {
             double value = Double.parseDouble(input);
-            finalBalance += value;
+            Menu.instance.currentBalance += value;
             JOptionPane.showMessageDialog(instance, "Successfully deposited " + value + ".");
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(instance, "Invalid deposit amount.");

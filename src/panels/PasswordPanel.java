@@ -1,8 +1,12 @@
 package panels;
 
+import java.io.FileWriter;
 import javax.swing.JOptionPane;
+import main.Login;
 
 public class PasswordPanel extends javax.swing.JPanel {
+
+    public String newPasswordUpdated;
 
     public PasswordPanel() {
         initComponents();
@@ -59,20 +63,20 @@ public class PasswordPanel extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(103, 103, 103)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(142, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(changePasswordBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(newPasswordTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(confirmPassword)
                     .addComponent(confirmPasswordTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(newPasswordTitle))
-                .addContainerGap(175, Short.MAX_VALUE))
+                .addGap(136, 136, 136))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(120, 120, 120)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(66, 66, 66)
                 .addComponent(newPasswordTitle)
                 .addGap(21, 21, 21)
                 .addComponent(newPasswordTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -82,7 +86,7 @@ public class PasswordPanel extends javax.swing.JPanel {
                 .addComponent(confirmPasswordTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addComponent(changePasswordBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -105,17 +109,21 @@ public class PasswordPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_confirmPasswordTXTActionPerformed
     private void changePasswordBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordBTNActionPerformed
-        Login login = new Login();
-        
-        String confirmPassword = confirmPasswordTXT.getText();
+          String confirmPassword = confirmPasswordTXT.getText();
         String newPassword = newPasswordTXT.getText();
-
-        if (newPassword.equals(confirmPassword)) {
-            JOptionPane.showMessageDialog(null, "Su clave ha sido cambiada");
-
-            Login.password = newPassword;
+        if (newPassword.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Cant leave spaces in blank");
+        } else if (newPassword.equals(confirmPassword)) {
+            try {
+                FileWriter fileWriter = new FileWriter("password.txt");
+                fileWriter.write(newPassword);
+                fileWriter.close();
+                JOptionPane.showMessageDialog(null, "Password Changed");
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "La contraseña no coincide");
+            JOptionPane.showMessageDialog(null, "Passwords don't match");
         }
 
     }//GEN-LAST:event_changePasswordBTNActionPerformed
